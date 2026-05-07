@@ -1,12 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
-    Roboto, system-ui, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  color-scheme: light;
 }
 
 html,
@@ -14,7 +13,7 @@ body,
 #root {
   height: 100%;
   margin: 0;
-  background: #f2f2f7;
-  color: #000;
+  background: #0C0C0E;
+  color: #F5F5F0;
   transition: background-color 0.3s ease, color 0.3s ease;
 }

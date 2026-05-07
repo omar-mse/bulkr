@@ -64,47 +64,76 @@ export default function InputBar({ onSend, onSaveQuickAdd, onQuickLog, libraryIt
   const dk = darkMode
 
   return (
-    <footer className={`sticky bottom-0 px-3 pt-2 pb-6 transition-colors duration-300 ${dk ? 'bg-black' : 'bg-[#f2f2f7]'}`}>
+    <footer
+      className={`sticky bottom-0 px-3 pt-2 pb-6 backdrop-blur-xl border-t transition-colors duration-300 ${
+        dk
+          ? 'bg-[#0C0C0E]/90 border-white/[0.06]'
+          : 'bg-[#f2f2f7]/90 border-black/[0.06]'
+      }`}
+    >
       {imagePreview && (
-        <div className={`mb-2 ml-12 inline-flex items-center gap-2 rounded-xl p-1 pr-2 border transition-colors duration-300 ${dk ? 'bg-[#1c1c1e] border-white/10' : 'bg-white border-gray-200'}`}>
+        <div
+          className={`mb-2 ml-11 inline-flex items-center gap-2 rounded-xl p-1 pr-2 border transition-colors duration-300 ${
+            dk ? 'bg-white/[0.07] border-white/[0.09]' : 'bg-white border-gray-200'
+          }`}
+        >
           <img src={imagePreview} alt="" className="w-12 h-12 object-cover rounded-lg" />
-          <button type="button" onClick={clearImage} className={`${dk ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-700'}`} aria-label="Remove image">
+          <button
+            type="button"
+            onClick={clearImage}
+            className={`${dk ? 'text-white/40 hover:text-white/70' : 'text-gray-500 hover:text-gray-700'}`}
+            aria-label="Remove image"
+          >
             <X size={16} />
           </button>
         </div>
       )}
 
       <div className="flex items-center gap-2">
-        {/* + button with popup menu */}
+        {/* Quick-add menu */}
         <div className="relative shrink-0" ref={menuRef}>
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
-            className={`w-9 h-9 flex items-center justify-center rounded-full border transition-all active:scale-90 ${dk ? 'bg-[#1c1c1e] border-white/10 text-gray-400 hover:text-white' : 'bg-white border-gray-300 text-gray-500 shadow-sm hover:text-gray-700'}`}
+            className={`w-9 h-9 flex items-center justify-center rounded-full border transition-all active:scale-90 ${
+              dk
+                ? 'bg-white/[0.07] border-white/[0.09] text-white/50 hover:text-white/90 hover:bg-white/[0.12]'
+                : 'bg-white border-gray-300 text-gray-500 shadow-sm hover:text-gray-700'
+            }`}
             aria-label="Quick add"
           >
             <Plus size={18} />
           </button>
 
           {menuOpen && (
-            <div className={`absolute bottom-full left-0 mb-3 w-56 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-2xl border transition-colors duration-300 ${dk ? 'bg-[#2c2c2e]/90 border-white/10' : 'bg-white/60 border-white/40'}`}>
+            <div
+              className={`absolute bottom-full left-0 mb-3 w-56 rounded-3xl overflow-hidden shadow-2xl backdrop-blur-2xl border transition-colors duration-300 ${
+                dk
+                  ? 'bg-[#1A1A24]/95 border-white/[0.09]'
+                  : 'bg-white/80 border-white/50'
+              }`}
+            >
               <button
                 type="button"
                 onClick={() => { setMenuOpen(false); setShowModal(true) }}
-                className={`w-full flex items-center gap-2 px-4 py-3 text-[15px] font-semibold active:bg-black/5 transition-colors ${dk ? 'text-white' : 'text-gray-900'}`}
+                className={`w-full flex items-center gap-2 px-4 py-3 text-[15px] font-semibold active:bg-black/10 transition-colors ${
+                  dk ? 'text-white/90' : 'text-gray-900'
+                }`}
               >
-                <Plus size={15} strokeWidth={2.5} className={dk ? 'text-gray-400' : 'text-gray-500'} />
+                <Plus size={15} strokeWidth={2.5} className={dk ? 'text-white/40' : 'text-gray-500'} />
                 Add New Meal
               </button>
 
               {libraryItems.length > 0 && (
-                <ul className={`max-h-56 overflow-y-auto border-t ${dk ? 'border-white/10' : 'border-black/10'}`}>
+                <ul className={`max-h-56 overflow-y-auto border-t ${dk ? 'border-white/[0.08]' : 'border-black/10'}`}>
                   {libraryItems.map((item) => (
                     <li key={item.id}>
                       <button
                         type="button"
                         onClick={() => handleQuickLog(item)}
-                        className={`w-full text-left px-4 py-3 text-[15px] font-semibold active:bg-black/5 transition-colors truncate ${dk ? 'text-white' : 'text-gray-900'}`}
+                        className={`w-full text-left px-4 py-3 text-[15px] font-semibold active:bg-black/10 transition-colors truncate ${
+                          dk ? 'text-white/90' : 'text-gray-900'
+                        }`}
                       >
                         {item.meal_name}
                       </button>
@@ -116,17 +145,29 @@ export default function InputBar({ onSend, onSaveQuickAdd, onQuickLog, libraryIt
           )}
         </div>
 
+        {/* Camera */}
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
-          className={`w-9 h-9 flex items-center justify-center rounded-full border shrink-0 transition-all active:scale-90 ${dk ? 'bg-[#1c1c1e] border-white/10 text-gray-400 hover:text-white' : 'bg-white border-gray-300 text-gray-500 shadow-sm hover:text-gray-700'}`}
+          className={`w-9 h-9 flex items-center justify-center rounded-full border shrink-0 transition-all active:scale-90 ${
+            dk
+              ? 'bg-white/[0.07] border-white/[0.09] text-white/50 hover:text-white/90 hover:bg-white/[0.12]'
+              : 'bg-white border-gray-300 text-gray-500 shadow-sm hover:text-gray-700'
+          }`}
           aria-label="Camera"
         >
           <Camera size={18} />
         </button>
         <input ref={fileRef} type="file" accept="image/*" capture="environment" onChange={pickImage} className="hidden" />
 
-        <div className={`flex-1 flex items-center rounded-full pl-4 pr-1 py-1 min-h-[36px] shadow-sm border transition-colors duration-300 ${dk ? 'bg-[#1c1c1e] border-white/10' : 'bg-white border-gray-300'}`}>
+        {/* Text input */}
+        <div
+          className={`flex-1 flex items-center rounded-full pl-4 pr-1 py-1 min-h-[38px] border transition-colors duration-300 ${
+            dk
+              ? 'bg-white/[0.07] border-white/[0.09]'
+              : 'bg-white border-gray-300 shadow-sm'
+          }`}
+        >
           <input
             type="text"
             value={text}
@@ -134,18 +175,20 @@ export default function InputBar({ onSend, onSaveQuickAdd, onQuickLog, libraryIt
             onKeyDown={onKeyDown}
             placeholder="Message"
             disabled={disabled}
-            className={`flex-1 bg-transparent text-[15px] py-1 focus:outline-none disabled:opacity-60 ${dk ? 'text-white placeholder:text-gray-500' : 'placeholder:text-gray-400'}`}
+            className={`flex-1 bg-transparent text-[15px] py-1 focus:outline-none disabled:opacity-60 ${
+              dk ? 'text-white/90 placeholder:text-white/25' : 'text-black placeholder:text-gray-400'
+            }`}
           />
           <button
             type="button"
             onClick={send}
             disabled={!canSend}
-            className={`w-7 h-7 rounded-full bg-[#007aff] text-white flex items-center justify-center shrink-0 transition-all duration-200 ${
-              canSend ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
-            }`}
+            className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-200 ${
+              dk ? 'bg-indigo-500 text-white' : 'bg-[#007aff] text-white'
+            } ${canSend ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'}`}
             aria-label="Send"
           >
-            <ArrowUp size={16} />
+            <ArrowUp size={15} />
           </button>
         </div>
       </div>

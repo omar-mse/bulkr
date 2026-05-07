@@ -68,7 +68,7 @@ export default function App() {
   const chatRef = useRef(null)
 
   useEffect(() => {
-    document.body.style.backgroundColor = darkMode ? '#000000' : '#f2f2f7'
+    document.body.style.backgroundColor = darkMode ? '#0C0C0E' : '#f2f2f7'
     localStorage.setItem('darkMode', darkMode)
   }, [darkMode])
 
@@ -282,7 +282,7 @@ export default function App() {
   )
 
   return (
-    <div className={`flex flex-col h-[100svh] transition-colors duration-300 ${darkMode ? 'bg-black' : 'bg-[#f2f2f7]'}`}>
+    <div className={`flex flex-col h-[100svh] transition-colors duration-300 ${darkMode ? 'bg-[#0C0C0E]' : 'bg-[#f2f2f7]'}`}>
       <Header
         consumed={consumed}
         goal={goals.calorie_goal}
